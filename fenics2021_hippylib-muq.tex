@@ -83,12 +83,10 @@ large-scale Bayesian inverse problems governed by PDEs}
   \and Umberto Villa\inst{2} \and Matthew Parno\inst{3} \\ \and Youssef
 Marzouk\inst{4} \and Omar Ghattas\inst{5}}
 \institute[]
-{\inst{1}Applied Mathematics, University of California, Merced \and
-  \inst{2}McKelvey School of Engineering, Washington University in St. Louis
-  \and \inst{3}Cold Regions Research and Engineering Lab, The United States
-  Army Corps of Engineers \and \inst{4}Center for Computational Engineering,
-  Massachusetts Institute of Technology \and \inst{5}Oden Institute for
-Computational Engineering and Sciences, The University of Texas at Austin}
+{\inst{1}University of California, Merced \and \inst{2}Washington University in
+St. Louis \and \inst{3}The United States Army Corps of Engineers \and \inst{4}
+Massachusetts Institute of Technology \and \inst{5} The University of Texas at
+Austin}
 
 \date[\today]{\today}
 
@@ -115,9 +113,9 @@ Computational Engineering and Sciences, The University of Texas at Austin}
     \includestandalone[width=\textwidth]{tikz/inverse_problems}
   \end{center}
 
-  Applications in all area of science, engineering, and medicine, e.g.,
   \begin{itemize}
-    \item the Antarctic surface velocity observations $\rightarrow$ the Antarctic basal sliding parameter
+    \item [] \scriptsize{Details in: T. Isaac, N. Petra, G. Stadler, and
+                 O. Ghattas, Journal of Computational Physics (2015)}
   \end{itemize}
 \end{frame}
 
@@ -132,27 +130,37 @@ Computational Engineering and Sciences, The University of Texas at Austin}
 \begin{frame}[c]
   \frametitle{Motivation and challenges}
 
-  \begin{itemize}
-    \item Aim to {\bf combine data with complex models to make better predictions}
-      \begin{itemize}
-        \item Arises in every application area: geosciences, mechanics,
-          materials, structures, aerospace, electronics, biological sciences,
-          chemical systems, medicine, ...
-      \end{itemize}
-    \item Strive to {\bf quantify the uncertainty} in the solution of inverse
-      problems
-    \item These can be carried out within {\bf the Bayesian inference framework}
-    \item The Markov chain Monte Carlo (MCMC) method is one popular method for
-      solving Bayesian inverse problems
-      \begin{itemize}
-        \item {\bf Prohibitive for large and complex problems} $\rightarrow$ Solution
+  \begin{alertblock}{Bayesian framework}
+    \begin{itemize}
+      \item {\bf Combines data with complex models to make better predictions}
+        \vspace{-0.5cm}
+        \begin{itemize}
+          \item Application area: geosciences, mechanics,
+            materials, aerospace, electronics, biological sciences,
+            chemical systems, medicine, ...
+        \end{itemize}
+      \item {\bf Quantifies the uncertainty} in the solution of inverse
+        problems
+    \end{itemize}
+  \end{alertblock}
+
+  \begin{alertblock}{Markov Chain Monte Carlo (MCMC)}
+    \begin{itemize}
+      \item Common method for solving Bayesian inverse problems governed by
+        PDEs
+      \item {\bf Prohibitive for large and complex problems} $\rightarrow$ Solution
           via conventional MCMC is intractable
-      \end{itemize}
-    \item {\bf Goal}: develop scalable open-source software to overcome the
-      prohibitive nature of Bayesian inversion
-    \item Make advanced inversion capabilities available to a broader
-      scientific community and accelerate scientific discovery
-  \end{itemize}
+    \end{itemize}
+  \end{alertblock}
+
+  \begin{alertblock}{Goal}
+    \begin{itemize}
+      \item Develop scalable open-source software to overcome the
+        prohibitive nature of Bayesian inversion
+      \item Make advanced inversion capabilities available to a broader
+        scientific community and accelerate scientific discovery
+    \end{itemize}
+  \end{alertblock}
 
 \end{frame}
 
@@ -164,7 +172,7 @@ Computational Engineering and Sciences, The University of Texas at Austin}
 
   \begin{itemize}
     \item hIPPYlib: aimed at solving deterministic and linearized Bayesian
-      inverse problems governed by PDES
+      inverse problems governed by PDEs
     \item MUQ: aimed at solving uncertainty quantification problems
   \end{itemize}
 \end{frame}
@@ -211,12 +219,12 @@ Computational Engineering and Sciences, The University of Texas at Austin}
 
   Bayes' theorem:
   \[
-    d \mu_{\text{post}} (m|y) \propto \pi_{\text{like}} (y|m) \ d
-    \mu_{\text{prior}} (m)
+    \pi_{\text{post}} (m|y) \propto \pi_{\text{like}} (y|m)
+    \pi_{0} (m)
   \]
 
   \begin{itemize}
-    \item Forward model: $\nabla \cdot (\exp^m \nabla u) = 0$ ($u=1$ on top,
+    \item Forward model: $\nabla \cdot (e^m \nabla u) = 0$ ($u=1$ on top,
       $u=0$ on bottom, and no flux on left and right)
     \item Gaussian prior with zero mean and Laplacian-like covariance operator
   \end{itemize}
@@ -250,8 +258,8 @@ Computational Engineering and Sciences, The University of Texas at Austin}
   \vspace{0.1cm}
 
   \begin{itemize}
-    \item Laplace approximation: $\mu_{\text{post}} \approx
-      \hat{\mu}_{\text{post}} \sim \mathcal{N} (m_{\text{MAP}},
+    \item Laplace approximation: $\pi_{\text{post}} \approx
+      \hat{\pi}_{\text{post}} \sim \mathcal{N} (m_{\text{MAP}},
       \mathcal{H}^{-1} (m_{\text{MAP}}))$
   \end{itemize}
 \end{frame}
@@ -296,8 +304,8 @@ Computational Engineering and Sciences, The University of Texas at Austin}
   \end{center}
 
   \begin{itemize}
-    \item DR: Delayed Rejection (using different MCMC kernels combined)
-    \item DILI: Dimension Independent Likelihood Informed
+    \item Various advanced MCMC methods are available: Delayed rejections,
+      Dimension independent likelihood informed, adaptive MCMC, ...
   \end{itemize}
 \end{frame}
 
@@ -321,6 +329,14 @@ Computational Engineering and Sciences, The University of Texas at Austin}
           \item Solving complex inverse problems governed by PDEs
           \item Quantifying associated uncertainty
         \end{itemize}
+    \end{itemize}
+  \end{alertblock}
+
+  \begin{alertblock}{Software and paper}
+    \begin{itemize}
+      \item https://github.com/hippylib/hippylib2muq
+      \item \scriptsize{K.T. Kim, N. Petra, U.  Villa, M. Parno, Y. Marzouk, and O. Ghattas,
+        ACM Trans. Math. Software, in preparation}
     \end{itemize}
   \end{alertblock}
 
